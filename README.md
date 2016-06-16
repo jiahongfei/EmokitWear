@@ -26,3 +26,16 @@ http://www.emokit.com/ <br>
 下载emokitsdk4.3.jar<br>
 http://developer.ticwear.com/
 下载mobvoi-api.jar
+
+2.添加权限
+1）手机端添加权限
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+<uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+2）腕表端添加权限
+<uses-permission android:name="android.permission.BODY_SENSORS" />
+<uses-permission android:name="android.permission.WAKE_LOCK" />
+<uses-permission android:name="android.permission.DEVICE_POWER" />
+
