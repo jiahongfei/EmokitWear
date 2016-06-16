@@ -173,3 +173,209 @@ protected void superMobvoiApiClient(MobvoiApiClient superMobvoiApiClient) {
     </intent-filter>
 </service>
 ```
+6.注册广播监听
+手机端和腕表端注册以下广播，主要是监听和回调方法，例如：开始测试回调，停止测试回调，返回情绪回调等。
+1）手机端
+Action为
+动态注册：
+```java
+MobileWearableReceive.ACTION_MOBILE_EMO
+```
+静态注册：
+```xml
+<action android:name="com.emokit.wear.action.MOBILE_EMO_LISTENER"/>
+```
+```java
+private MobileWearableReceive mMobileWearableReceive = new MobileWearableReceive() {
+    @Override
+public void onStartHeartRateListener() {
+//开始测试心率
+        Toast.makeText(mContext, "StartHeartRate", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+public void onCancelHeartRateListener() {
+//取消测试心率
+        Toast.makeText(mContext, "CancelHeartRate", Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+public void onArrayHeartRateListener(float[] heartRates) {
+//获取心率完成，收到心率数组
+        Toast.makeText(mContext, "ArrayHeartRate", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+public void onEmotionListener(String emoJson) {
+//获取情绪结果
+        Toast.makeText(mContext, "Emotion : " + emoJson, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+public void onErrorListener(String errCode) {
+   //出错监听
+        Toast.makeText(mContext, "errCode : " + errCode, Toast.LENGTH_SHORT).show();
+    }
+};
+```
+2）腕表端
+Action为
+动态注册：
+```java
+WearWearableReceive.ACTION_WEAR_EMO
+```
+静态注册：
+```xml
+<action android:name="com.emokit.wear.action.WEAR_EMO_LISTENER"/>
+```
+```java
+private WearWearableReceive mWearWearableReceive = new WearWearableReceive() {
+        @Override
+        public void onStartHeartRateListener() {
+		//开始测试心率
+            Toast.makeText(mContext, "StartHeartRate", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onCancelHeartRateListener() {
+		//取消测试心率
+            Toast.makeText(mContext, "CancelHeartRate", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onArrayHeartRateListener(float[] heartRates) {
+		//获取心率完成，收到心率数组
+            Toast.makeText(mContext, "ArrayHeartRate", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onHeartRateValueListener(int index, float value) {
+		//每次获取的心率值
+		//获取第index个心率
+		//获取的心率值
+            if(0 == index){
+                Toast.makeText(mContext, "HeartRateValue : " + value + "   " + index, Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        @Override
+        public void onEmotionListener(String emoJson) {
+		//获取情绪结果
+            Toast.makeText(mContext, "Emotion : " + emoJson, Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onErrorListener(String errCode) {
+		//出错监听
+            Toast.makeText(mContext, "errCode : " + errCode, Toast.LENGTH_SHORT).show();
+        }
+    };
+```
+3）情绪结果
+成功结果:
+```json
+{"resultcode":"200","rc_main":"T","rc_main_value":"8.75","result_id":"14907293","exciting":"CH","exciting_trend":"UP","servertime":"20160319101255"}
+```
+错误结果:
+```json
+{"resultcode":"10000","reason":"传入的参数不正确","servertime":"20151030145703"}
+```
+字段说明
+resultcode 结果码（详细见附录（1））
+rc_main 主要情绪(详细见附录（2）)
+rc_main_value 主要情绪分值
+result_id 返回情绪结果唯一id
+exciting 当前情绪状态（详细见附录（3））
+exciting_trend 情绪走势（详细见附录（4））
+servertime 服务器时间
+reason 错误描述
+4）广播监听错误代码
+手机端、腕表端errCode如下
+```java
+public void onErrorListener(String errCode) {
+		//出错监听
+}
+
+/**获取情绪结果错误*/
+PublicConstant.ERR_EMOTION_RESULT = "10000";
+/**获取心率错误，没有获取到心率*/
+PublicConstant.ERR_HEART_RATE = "10001";
+/**
+ *点击开始测试心率,手机腕表没有建立链接， 
+ * 1.手机端，没有链接到腕表
+ * 2.腕表端，没有链接到手机
+ */
+PublicConstant. ERR_CONNECT_START_HEART_RATE
+ = "10002";
+/**
+ *停止测试心率,手机腕表没有建立链接 
+ * 1.手机端，没有链接到腕表(只有手机端，腕表端没链接到手机也可以取消)
+ */
+PublicConstant. ERR_CONNECT_STOP_HEART_RATE= "10003";
+/**
+ *手机端发送情绪结果,手机腕表没有建立链接 
+ * 1.没有链接到腕表
+ */
+PublicConstant.ERR_CONNECT _SEND_EMO_RESULT = "10004";
+/**
+ * 手表端发送心率数组,手机腕表没有建立链接
+ * 1.没有链接到手机
+ */
+PublicConstant.ERR_CONNECT _SEND_HEART_RATE_ARRAY = "10005";
+```
+7.开始获取情绪和停止获取情绪
+1）手机端
+开始获取情绪
+```java
+Intent intent = new Intent(mContext, MobileEmokitService.class);
+intent.putExtra(PublicConstant.SERVICE_ACTION_START_HEART_RATE, "");
+startService(intent);
+```
+停止获取情绪
+```java
+Intent intent = new Intent(mContext,MobileEmokitService.class);
+intent.putExtra(PublicConstant.SERVICE_ACTION_STOP_HEART_RATE, "");
+startService(intent);
+```
+2）手表端
+开始获取情绪
+```java
+Intent intent = new Intent(MainActivity.this, WearEmokitService.class);
+intent.putExtra(PublicConstant.SERVICE_ACTION_START_HEART_RATE, "");
+startService(intent);
+```
+停止获取情绪
+```java
+Intent intent = new Intent(MainActivity.this, WearEmokitService.class);
+intent.putExtra(PublicConstant.SERVICE_ACTION_STOP_HEART_RATE, "");
+startService(intent);
+```
+
+8.附录
+（1）	结果码表
+成功
+resultcode = 200
+错误
+ 
+（2）	主要情绪
+详情见
+《EmoKit二十四种情绪描述》
+《EmoKit七种情绪描述》
+《EmoKit五种情绪描述》
+（3）	当前情绪状态
+LA:过于低迷
+LV:较为低迷
+CH:较为兴奋
+HO:过于兴奋
+（4）情绪走势
+DN:走低 
+ST:维持 
+UP:走高
+（5）情绪种类
+返回情绪结果种类，分为24种，7种，5种
+MobileApiConfiguration.RC_TYPE_24
+MobileApiConfiguration.RC_TYPE_7
+MobileApiConfiguration.RC_TYPE_5
+
+
