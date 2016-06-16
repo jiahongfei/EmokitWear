@@ -22,7 +22,7 @@ emokitsdk4.3.jar（手机端引入）<br>
 emokitwear.jar（手机端、腕表端都需要引入）<br>
 mobvoi-api.jar（手机端、腕表端都需要引入）<br>
 三个包引入到工程。<br>
-http://www.emokit.com/<br>
+http://www.emokit.com/ <br>
 下载emokitsdk4.3.jar<br>
 http://developer.ticwear.com/
 下载mobvoi-api.jar
