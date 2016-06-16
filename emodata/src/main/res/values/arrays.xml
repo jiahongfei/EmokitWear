@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="emotion_24">
+        <item>KA+；接纳；包容；吸收；</item>
+        <item>KP+；专注；平静；出神；孤单；</item>
+        <item>KR+；痛快；爽快；宣泄；放松；</item>
+        <item>CT+；豪放；从容；开朗；豁达；</item>
+        <item>CG+；决断；果敢；坚定；爽快；</item>
+        <item>YC+；平和；美好；理智；祥和；</item>
+        <item>YL+；舒适；轻松；自然；顺心；</item>
+        <item>YV+；欢快；欢畅；舒畅；舒心；</item>
+        <item>ML+；怜爱；同情；关心；甜蜜；</item>
+        <item>MS+；喜欢；开心；高兴；心动；</item>
+        <item>WS+；积极；阳光；高涨；激情；</item>
+        <item>WC+；无畏；泰然；面对；激动；</item>
+        <item>KA-；急躁；着急；躁动；憋闷；</item>
+        <item>KP-；心乱；分心；空想；思念；</item>
+        <item>KR-；烦躁；暴躁；憋火；焦虑；</item>
+        <item>CT-；伤感；哭泣；痛心；低落；</item>
+        <item>CG-；怯懦；犹豫；郁闷；</item>
+        <item>YC-；生气；指责；攻击；兴奋；</item>
+        <item>YL-；紧张；失调；失控；宣泄；</item>
+        <item>YV-；压抑；窝心；别扭；想念；</item>
+        <item>ML-；哀伤；失落；幽怨；寂寞；</item>
+        <item>MS-；记恨；怨恨；仇恨；哀怨；</item>
+        <item>WS-；消极；灰暗；低迷；颓废；</item>
+        <item>WC-；恐惧；害怕；惊恐；焦虑；</item>
+    </string-array>
+    <string-array name="emotion_7">
+        <item>T；厌恶；反感；意外；惊讶；</item>
+        <item>K；平静；放松；专注；出神；</item>
+        <item>Y；生气；失控；兴奋；宣泄；</item>
+        <item>W；害怕；焦虑；紧张；激情；</item>
+        <item>C；伤感；郁闷；痛心；压抑；</item>
+        <item>M；开心；甜蜜；欢快；舒畅；</item>
+        <item>D；忧愁；疑惑；迷茫；无助；</item>
+    </string-array>
+    <string-array name="emotion_5">
+        <item>K；平静；放松；专注；出神；</item>
+        <item>C；伤感；郁闷；痛心；压抑；</item>
+        <item>Y；生气；失控；兴奋；宣泄；</item>
+        <item>M；开心；甜蜜；欢快；舒畅；</item>
+        <item>W；害怕；焦虑；紧张；激情；</item>
+    </string-array>
+</resources>

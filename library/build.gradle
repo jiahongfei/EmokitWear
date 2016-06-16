@@ -1,0 +1,40 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        minSdkVersion 18
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile files('libs/mobvoi-api.jar')
+    compile files('libs/emokitsdk4.3.jar')
+}
+
+//task to delete the old jar
+task deleteOldJar(type: Delete) {
+    delete 'release/emokitwear.jar'
+}
+
+//task to export contents as jar
+task exportJar(type: Copy) {
+    from('build/intermediates/bundles/release/')
+    into('release/')
+    include('classes.jar')
+///Give whatever name you want to give
+    rename('classes.jar', 'emokitwear.jar')
+}
+exportJar.dependsOn(deleteOldJar, build)

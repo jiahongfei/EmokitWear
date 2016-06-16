@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.emokit.wear.MainActivity">
+
+    <LinearLayout
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/emotionStartButton"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@android:color/white"
+            android:text="获取情绪"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:layout_marginLeft="1dp"/>
+
+        <Button
+            android:layout_marginRight="1dp"
+            android:layout_weight="1"
+            android:id="@+id/emotionEndButton"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_below="@id/emotionStartButton"
+            android:background="@android:color/white"
+            android:text="取消"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/heartRateTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:hint="心率值" />
+
+    <TextView
+        android:id="@+id/countdownTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:hint="倒计时" />
+
+    <TextView
+        android:id="@+id/emotionTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:hint="情绪结果" />
+</LinearLayout>

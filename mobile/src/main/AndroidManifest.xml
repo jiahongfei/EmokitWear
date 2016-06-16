@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.emokit.wear.test">
+
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.BODY_SENSORS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.DEVICE_POWER" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:name=".MobileApplication"
+        android:supportsRtl="true">
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".emo.MobileEmokitService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.mobvoi.android.wearable.BIND_LISTENER" />
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="EMOKIT_AID"
+            android:value="100384" />
+        <meta-data
+            android:name="EMOKIT_KEY"
+            android:value="4c2810e003a29e967f1385aa028a19a6" />
+        <meta-data
+            android:name="EMOKIT_RecordTaskAnimation"
+            android:value="0" />
+
+    </application>
+
+</manifest>

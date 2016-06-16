@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.emokit.wear.MainActivity">
+
+    <Button
+        android:layout_marginTop="50dp"
+        android:id="@+id/emotionStartButton"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        android:background="@android:color/white"
+        android:text="获取情绪" />
+    <Button
+        android:layout_marginTop="10dp"
+        android:id="@+id/emotionEndButton"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textSize="18sp"
+        android:layout_below="@id/emotionStartButton"
+        android:textColor="@android:color/black"
+        android:background="@android:color/white"
+        android:text="取消" />
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/emotionEndButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="情绪结果"
+        android:gravity="center"
+        android:id="@+id/emotionTextView"/>
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/emotionTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="情绪结果"
+        android:gravity="center"
+        android:id="@+id/emoTextView"/>
+
+    <ImageView
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/emoTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="centerInside"
+        android:id="@+id/emoImageView"/>
+</RelativeLayout>
