@@ -6,58 +6,58 @@ Android可穿戴设备 手表根据手表获取的心率测试当前的情绪，
 详情大家可以进入官网查看
 
 #####EmokitWear结构分析
-1.最主要的也就是类库是 library<br>  
+1.最主要的也就是类库是 library
   里面主要封装了手表端采集心率，传递到手机端，手机端连接网络检测当前心情的过程和一些必要的监听<br>  
-2.手机端腕表端公用的数据 emodata<br>  
-  里面主要是手机端和腕表端公用的数据和类方法<br>  
-3.手机端程序demo  mobile<br>  
-  手机端程序demo<br>  
-4.玩表单程序demo  wear<br>  
-  腕表端程序demo<br>  
+2.手机端腕表端公用的数据 emodata 
+  里面主要是手机端和腕表端公用的数据和类方法
+3.手机端程序demo  mobile
+  手机端程序demo
+4.玩表单程序demo  wear
+  腕表端程序demo
   
 #####EmokitWearSDK技术文档
 1.导入SDK<br>  
-创建一个AndoridWear工程，将<br>  
-emokitsdk4.3.jar（手机端引入）<br>  
-emokitwear.jar（手机端、腕表端都需要引入）<br>  
-mobvoi-api.jar（手机端、腕表端都需要引入）<br>  
-三个包引入到工程。<br>  
-http://www.emokit.com/<br>  
+创建一个AndoridWear工程，将
+emokitsdk4.3.jar（手机端引入）
+emokitwear.jar（手机端、腕表端都需要引入）
+mobvoi-api.jar（手机端、腕表端都需要引入）
+三个包引入到工程。
+http://www.emokit.com/
 下载emokitsdk4.3.jar<br>  
-http://developer.ticwear.com/<br>  
-下载mobvoi-api.jar<br>  
+http://developer.ticwear.com/
+下载mobvoi-api.jar
 
 2.添加权限
 1）手机端添加权限
-<uses-permission android:name="android.permission.INTERNET" /><br>  
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /><br>  
-<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /><br>  
-<uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" /><br>  
-<uses-permission android:name="android.permission.READ_PHONE_STATE" /><br>  
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+<uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+<uses-permission android:name="android.permission.READ_PHONE_STATE" />
 2）腕表端添加权限
-<uses-permission android:name="android.permission.BODY_SENSORS" /><br>  
-<uses-permission android:name="android.permission.WAKE_LOCK" /><br>  
-<uses-permission android:name="android.permission.DEVICE_POWER" /><br>  
+<uses-permission android:name="android.permission.BODY_SENSORS" />
+<uses-permission android:name="android.permission.WAKE_LOCK" />
+<uses-permission android:name="android.permission.DEVICE_POWER" />
 3.添加AID和KEY
-初始化时候手机端需要配置从EmoKit 开发者中心(http://dev.emokit.com/)申请的AID和KEY。<br>  
-AndroidManifest.xml中配置如下:<br>  
-<meta‐data<br>  
-android:name="EMOKIT_AID"<br>  
-android:value="XXXXXX"/><br>  
-<meta‐data<br>  
-android:name="EMOKIT_KEY"<br>  
-android:value="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"/><br>  
+初始化时候手机端需要配置从EmoKit 开发者中心(http://dev.emokit.com/)申请的AID和KEY。
+AndroidManifest.xml中配置如下:
+<meta‐data
+android:name="EMOKIT_AID"
+android:value="XXXXXX"/>
+<meta‐data
+android:name="EMOKIT_KEY"
+android:value="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"/>
 
 4.初始化SDK
-一定要在Application的onCreate中调用。<br>  
+一定要在Application的onCreate中调用。
 1）手机端初始化代码
-MobileApiConfiguration configuration = new MobileApiConfiguration.Builder()     <br>  
-.setPlatflag("EmokitWearSDK")//platflag 应用名    <br>       
-.setUserName("userName")//userName 用户名或设备 ID   <br>        
-.setPassword("10000")//password 用户登录密码(默认10000) <br>          
-.setRcType(rcType)//情绪结果种类，分为24种，7种，5种（见附录5）     <br>      
-.create();<br>  
-EmokitApiManager.getInstance().mobileApiConfig(mContext,configuration);<br>  
+MobileApiConfiguration configuration = new MobileApiConfiguration.Builder()   
+.setPlatflag("EmokitWearSDK")//platflag 应用名   
+.setUserName("userName")//userName 用户名或设备 ID   
+.setPassword("10000")//password 用户登录密码(默认10000) 
+.setRcType(rcType)//情绪结果种类，分为24种，7种，5种（见附录5）   
+.create();
+EmokitApiManager.getInstance().mobileApiConfig(mContext,configuration);
 2）腕表端初始化代码
 WearApiConfiguration configuration = new WearApiConfiguration.Builder()// 设置获取心率的超时时间,如果超过这个时间还没有接收到一个有用的心率值会自动停止获取心率
 //获取心率期间最小时间10秒，输入参数小于10秒无效
