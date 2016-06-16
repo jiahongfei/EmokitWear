@@ -29,7 +29,7 @@ http://developer.ticwear.com/
 
 2.添加权限<br>
 1）手机端添加权限<br>
-~xml
+```xml
 <uses-permission android:name="android.permission.INTERNET" />   <br>
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />   <br>
 <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
