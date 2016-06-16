@@ -282,14 +282,14 @@ private WearWearableReceive mWearWearableReceive = new WearWearableReceive() {
 {"resultcode":"10000","reason":"传入的参数不正确","servertime":"20151030145703"}
 ```
 字段说明
-resultcode 结果码（详细见附录（1））
-rc_main 主要情绪(详细见附录（2）)
-rc_main_value 主要情绪分值
-result_id 返回情绪结果唯一id
-exciting 当前情绪状态（详细见附录（3））
-exciting_trend 情绪走势（详细见附录（4））
-servertime 服务器时间
-reason 错误描述
+resultcode 结果码（详细见附录（1））<br>
+rc_main 主要情绪(详细见附录（2）)<br>
+rc_main_value 主要情绪分值<br>
+result_id 返回情绪结果唯一id<br>
+exciting 当前情绪状态（详细见附录（3））<br>
+exciting_trend 情绪走势（详细见附录（4））<br>
+servertime 服务器时间<br>
+reason 错误描述<br>
 4）广播监听错误代码
 手机端、腕表端errCode如下
 ```java
@@ -352,20 +352,20 @@ intent.putExtra(PublicConstant.SERVICE_ACTION_STOP_HEART_RATE, "");
 startService(intent);
 ```
 
-8.附录
-（1）	结果码表
-成功
-resultcode = 200
-错误
+8.附录<br>
+（1）	结果码表<br>
+成功<br>
+resultcode = 200<br>
+错误<br>
  
-（2）	主要情绪
-详情见
-《EmoKit二十四种情绪描述》
-《EmoKit七种情绪描述》
-《EmoKit五种情绪描述》
-（3）	当前情绪状态
-LA:过于低迷
-LV:较为低迷
+（2）	主要情绪<br>
+详情见<br>
+《EmoKit二十四种情绪描述》<br>
+《EmoKit七种情绪描述》<br>
+《EmoKit五种情绪描述》<br>
+（3）	当前情绪状态<br>
+LA:过于低迷<br>
+LV:较为低迷<br>
 CH:较为兴奋
 HO:过于兴奋
 （4）情绪走势
