@@ -42,4 +42,134 @@ http://developer.ticwear.com/
 <uses-permission android:name="android.permission.WAKE_LOCK" />
 <uses-permission android:name="android.permission.DEVICE_POWER" />
 ```
+3.添加AID和KEY
+初始化时候手机端需要配置从EmoKit 开发者中心(http://dev.emokit.com/)申请的AID和KEY。
+AndroidManifest.xml中配置如下:
+```xml
+<meta‐data
+android:name="EMOKIT_AID"
+android:value="XXXXXX"/>
+<meta‐data
+android:name="EMOKIT_KEY"
+android:value="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"/>
+```
+4.初始化SDK
+一定要在Application的onCreate中调用。
+1）手机端初始化代码
+```java
+MobileApiConfiguration configuration = new MobileApiConfiguration.Builder()
+        .setPlatflag("EmokitWearSDK")//platflag 应用名
+        .setUserName("userName")//userName 用户名或设备 ID
+        .setPassword("10000")//password 用户登录密码(默认10000)
+        .setRcType(rcType)//情绪结果种类，分为24种，7种，5种（见附录5）
+        .create();
+EmokitApiManager.getInstance().mobileApiConfig(mContext,configuration);
+```
+2）腕表端初始化代码
+```java
+WearApiConfiguration configuration = new WearApiConfiguration.Builder()
+// 设置获取心率的超时时间,如果超过这个时间还没有接收到一个有用的心率值会自动停止获取心率
+//获取心率期间最小时间10秒，输入参数小于10秒无效
+.setHeartRateDuration(30*1000)
+// 设置获取心率的时间，在这个规定时间内获取心率在成功获取第一个心率值开始倒计时
+//获取心率超时时间最小20秒，输入参数小于20秒无效
+.setHeartRateTimeOut(45 * 1000)
+.create();
+EmokitApiManager.getInstance().wearApiConfig(getApplication(), configuration);
+```
+5.设置数据传输Service
+1）手机端
+手机端为了和腕表进行数据传递需要实现MobileDataTransferService并且在AndroidManifest.xml中注册
+```java
+public class MobileEmokitService extends MobileDataTransferService{
 
+private MobvoiApiClient mMobvoiApiClient;
+
+@Override
+protected void superMobvoiApiClient(MobvoiApiClient superMobvoiApiClient) {
+    //这个方法将父类的对象传递到子类中，子类可以根据这个对象进行数据的传递或者接收
+    		mMobvoiApiClient = superMobvoiApiClient;
+}
+
+    @Override
+    public void onPeerConnected(Node arg0) {
+        super.onPeerConnected(arg0);
+    }
+
+    @Override
+    public void onPeerDisconnected(Node arg0) {
+        super.onPeerDisconnected(arg0);
+    }
+
+    @Override
+    public void onMessageReceived(MessageEvent messageEvent) {
+        //必须调用
+        super.onMessageReceived(messageEvent);
+    }
+
+    @Override
+    public void onDataChanged(DataEventBuffer eventBuffer) {
+        //必须调用
+        super.onDataChanged(eventBuffer);
+    }
+}
+```
+2）腕表端
+腕表端为了和手机进行数据传递需要实现WearDataTransferService并且在AndroidManifest.xml中注册
+```java
+public class WearEmokitService extends WearDataTransferService {
+	private MobvoiApiClient mMobvoiApiClient;
+
+@Override
+protected void superMobvoiApiClient(MobvoiApiClient superMobvoiApiClient) {
+    //这个方法将父类的对象传递到子类中，子类可以根据这个对象进行数据的传递或者接收
+    		mMobvoiApiClient = superMobvoiApiClient;
+}
+
+    @Override
+    public void onPeerConnected(Node arg0) {
+        super.onPeerConnected(arg0);
+    }
+
+    @Override
+    public void onPeerDisconnected(Node arg0) {
+        super.onPeerDisconnected(arg0);
+    }
+
+    @Override
+    public void onMessageReceived(MessageEvent messageEvent) {
+        //必须调用
+        super.onMessageReceived(messageEvent);
+    }
+
+    @Override
+    public void onDataChanged(DataEventBuffer eventBuffer) {
+        //必须调用
+        super.onDataChanged(eventBuffer);
+    }
+
+}
+```
+3）AndroidManifest.xml中注册Service
+手机端
+```xml
+<service
+    android:name=".emo.MobileEmokitService"
+    android:enabled="true"
+    android:exported="true">
+    <intent-filter>
+        <action android:name="com.mobvoi.android.wearable.BIND_LISTENER" />
+    </intent-filter>
+</service>
+```
+腕表端
+```xml
+<service
+    android:name=".emo.WearEmokitService"
+    android:enabled="true"
+    android:exported="true">
+    <intent-filter>
+        <action android:name="com.mobvoi.android.wearable.BIND_LISTENER" />
+    </intent-filter>
+</service>
+```
