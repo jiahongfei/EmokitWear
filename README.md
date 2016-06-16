@@ -51,16 +51,15 @@ android:value="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"/>
 4.初始化SDK
 一定要在Application的onCreate中调用。
 1）手机端初始化代码
-MobileApiConfiguration configuration = new MobileApiConfiguration.Builder()
-        .setPlatflag("EmokitWearSDK")//platflag 应用名
-        .setUserName("userName")//userName 用户名或设备 ID
-        .setPassword("10000")//password 用户登录密码(默认10000)
-        .setRcType(rcType)//情绪结果种类，分为24种，7种，5种（见附录5）
-        .create();
+MobileApiConfiguration configuration = new MobileApiConfiguration.Builder()     
+.setPlatflag("EmokitWearSDK")//platflag 应用名         
+.setUserName("userName")//userName 用户名或设备 ID         
+.setPassword("10000")//password 用户登录密码(默认10000)         
+.setRcType(rcType)//情绪结果种类，分为24种，7种，5种（见附录5）         
+.create();
 EmokitApiManager.getInstance().mobileApiConfig(mContext,configuration);
 2）腕表端初始化代码
-WearApiConfiguration configuration = new WearApiConfiguration.Builder()
-// 设置获取心率的超时时间,如果超过这个时间还没有接收到一个有用的心率值会自动停止获取心率
+WearApiConfiguration configuration = new WearApiConfiguration.Builder()// 设置获取心率的超时时间,如果超过这个时间还没有接收到一个有用的心率值会自动停止获取心率
 //获取心率期间最小时间10秒，输入参数小于10秒无效
 .setHeartRateDuration(30*1000)
 // 设置获取心率的时间，在这个规定时间内获取心率在成功获取第一个心率值开始倒计时
@@ -140,8 +139,7 @@ protected void superMobvoiApiClient(MobvoiApiClient superMobvoiApiClient) {
 
 }
 3）AndroidManifest.xml中注册Service
-手机端
-<service
+手机端 <service
     android:name=".emo.MobileEmokitService"
     android:enabled="true"
     android:exported="true">
@@ -207,7 +205,6 @@ Action为
 WearWearableReceive.ACTION_WEAR_EMO
 静态注册：
 <action android:name="com.emokit.wear.action.WEAR_EMO_LISTENER"/>
-
 
 private WearWearableReceive mWearWearableReceive = new WearWearableReceive() {
         @Override
@@ -323,7 +320,7 @@ startService(intent);
 成功
 resultcode = 200
 错误
- 
+
 （2）	主要情绪
 详情见
 《EmoKit二十四种情绪描述》
@@ -343,5 +340,4 @@ UP:走高
 MobileApiConfiguration.RC_TYPE_24
 MobileApiConfiguration.RC_TYPE_7
 MobileApiConfiguration.RC_TYPE_5
-
 
