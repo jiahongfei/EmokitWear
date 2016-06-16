@@ -366,16 +366,16 @@ resultcode = 200<br>
 （3）	当前情绪状态<br>
 LA:过于低迷<br>
 LV:较为低迷<br>
-CH:较为兴奋
-HO:过于兴奋
-（4）情绪走势
-DN:走低 
-ST:维持 
-UP:走高
-（5）情绪种类
-返回情绪结果种类，分为24种，7种，5种
-MobileApiConfiguration.RC_TYPE_24
-MobileApiConfiguration.RC_TYPE_7
-MobileApiConfiguration.RC_TYPE_5
+CH:较为兴奋<br>
+HO:过于兴奋<br>
+（4）情绪走势<br>
+DN:走低 <br>
+ST:维持 <br>
+UP:走高<br>
+（5）情绪种类<br>
+返回情绪结果种类，分为24种，7种，5种<br>
+MobileApiConfiguration.RC_TYPE_24<br>
+MobileApiConfiguration.RC_TYPE_7<br>
+MobileApiConfiguration.RC_TYPE_5<br>
 
 
